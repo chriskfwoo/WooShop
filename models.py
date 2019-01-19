@@ -20,3 +20,6 @@ class Product(db.Model):
             'price': self.price,
             'inventory_count': self.inventory_count
         }
+    
+    def is_available(self):
+        return self.inventory_count > 0
