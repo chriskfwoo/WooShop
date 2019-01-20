@@ -1,4 +1,4 @@
-from models import Product
+from project.models import Product
 
 
 # STORE THE CART IN-MEMORY

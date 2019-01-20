@@ -23,7 +23,7 @@ def ping():
 
 @api_bp.route('/products', methods=["GET"])
 def products():
-    from controller import get_all_products
+    from project.controller import get_all_products
 
     try:
         list_products = get_all_products()
@@ -35,7 +35,7 @@ def products():
 
 @api_bp.route('/products/available', methods=["GET"])
 def available_products():
-    from controller import get_all_available_products
+    from project.controller import get_all_available_products
 
     try:
         list_products = get_all_available_products()
@@ -47,7 +47,7 @@ def available_products():
 
 @api_bp.route('/cart/list', methods=["GET"])
 def list_cart():
-    from controller import list_user_cart
+    from project.controller import list_user_cart
 
     try:
         cart_details = list_user_cart(
@@ -60,7 +60,7 @@ def list_cart():
 
 @api_bp.route('/cart/add', methods=["POST"])
 def add_cart():
-    from controller import add_product_user_cart
+    from project.controller import add_product_user_cart
 
     try:
         if 'pid' in request.args and 'uid' in request.args:
@@ -78,7 +78,7 @@ def add_cart():
 
 @api_bp.route('/cart/remove', methods=["POST"])
 def remove_cart():
-    from controller import remove_product_user_cart
+    from project.controller import remove_product_user_cart
 
     try:
         if 'pid' in request.args and 'uid' in request.args:
@@ -96,7 +96,7 @@ def remove_cart():
 
 @api_bp.route('/cart/checkout', methods=["POST"])
 def purchase_products():
-    from controller import checkout_cart
+    from project.controller import checkout_cart
 
     try:
         if 'uid' in request.args:
