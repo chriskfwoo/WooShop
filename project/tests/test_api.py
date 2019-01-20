@@ -35,7 +35,7 @@ class TestAPIService(BaseTestCase):
         
         data = json.loads(response.data.decode())
         self.assertEqual(response.status_code, 200)
-        self.assertEqual('Incorrect auth token', data['error'])
+        self.assertEqual('Incorrect auth token.', data['error'])
 
 
 if __name__ == '__main__':

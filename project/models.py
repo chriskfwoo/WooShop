@@ -23,6 +23,3 @@ class Product(db.Model):
 
     def is_available(self):
         return self.inventory_count > 0
-
-    def remove_inventory(self, value):
-        self.inventory_count = self.inventory_count - value

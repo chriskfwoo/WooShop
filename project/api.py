@@ -13,7 +13,7 @@ def before_request():
         return jsonify({'error': 'No auth token specify.'})
     else:
         if request.headers['token'] != ACCESS_TOKEN:
-            return jsonify({'error': 'Incorrect auth token'})
+            return jsonify({'error': 'Incorrect auth token.'})
 
 
 @api_bp.route('/ping', methods=["GET"])
@@ -30,7 +30,7 @@ def products():
         return jsonify({'products': list_products})
     except Exception as msg:
         print(msg)
-        return jsonify({'error': 'Server Error'})
+        return jsonify({'error': 'Server Error.'})
 
 
 @api_bp.route('/products/available', methods=["GET"])
@@ -42,7 +42,7 @@ def available_products():
         return jsonify({'products': list_products})
     except Exception as msg:
         print(msg)
-        return jsonify({'error': 'Server Error'})
+        return jsonify({'error': 'Server Error.'})
 
 
 @api_bp.route('/cart/list', methods=["GET"])
@@ -55,7 +55,7 @@ def list_cart():
         return jsonify({'cart': cart_details})
     except Exception as msg:
         print(msg)
-        return jsonify({'error': 'Server Error'})
+        return jsonify({'error': 'Server Error.'})
 
 
 @api_bp.route('/cart/add', methods=["POST"])
@@ -73,7 +73,7 @@ def add_cart():
             return jsonify({'error': 'Incorrect query params.'})
     except Exception as msg:
         print(msg)
-        return jsonify({'error': 'Server Error'})
+        return jsonify({'error': 'Server Error.'})
 
 
 @api_bp.route('/cart/remove', methods=["POST"])
@@ -91,7 +91,7 @@ def remove_cart():
             return jsonify({'error': 'Incorrect query params.'})
     except Exception as msg:
         print(msg)
-        return jsonify({'error': 'Server Error'})
+        return jsonify({'error': 'Server Error.'})
 
 
 @api_bp.route('/cart/checkout', methods=["POST"])
@@ -108,4 +108,4 @@ def purchase_products():
             return jsonify({'error': 'Incorrect query params.'})
     except Exception as msg:
         print(msg)
-        return jsonify({'error': 'Server Error'})
+        return jsonify({'error': 'Server Error.'})

@@ -1,3 +1,4 @@
+from project import db
 from project.models import Product
 
 
@@ -67,6 +68,8 @@ def add_product_user_cart(user_id, product_id):
     if query_product is None:
         return {'error': 'No product found.'}
     else:
+        if not query_product.is_available():
+            return {'error': 'Product inventory is empty.'}
         if user_id not in CART:
             CART[user_id] = {
                 'products': [],
@@ -125,8 +128,9 @@ def checkout_cart(user_id):
     for product in CART[user_id]['products']:
         query_product = Product.query.filter_by(id=product['pid']).first()
         if query_product.is_available():
-            query_product.remove_inventory(1)
-        total_price = total_price + query_product.price
+            query_product.inventory_count = query_product.inventory_count - 1
+            db.session.commit() 
+            total_price = total_price + query_product.price
 
     # remove all the items in the user cart
     CART.pop(user_id, None)
