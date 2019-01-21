@@ -11,9 +11,8 @@ ACCESS_TOKEN = 'supersecretkey'
 def before_request():
     if 'token' not in request.headers:
         return jsonify({'error': 'No auth token specify.'})
-    else:
-        if request.headers['token'] != ACCESS_TOKEN:
-            return jsonify({'error': 'Incorrect auth token.'})
+    if request.headers['token'] != ACCESS_TOKEN:
+        return jsonify({'error': 'Incorrect auth token.'})
 
 
 @api_bp.route('/ping', methods=["GET"])
@@ -104,8 +103,7 @@ def purchase_products():
             if 'error' in purchase:
                 return jsonify({'error':  purchase['error']})
             return jsonify({'total_price': purchase['price']})
-        else:
-            return jsonify({'error': 'Incorrect query params.'})
+        return jsonify({'error': 'Incorrect query params.'})
     except Exception as msg:
         print(msg)
         return jsonify({'error': 'Server Error.'})

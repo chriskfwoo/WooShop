@@ -45,11 +45,9 @@ def list_user_cart(user_id=None):
 
     if user_id is None:
         return CART
-    else:
-        if user_id not in CART:
-            return {}
-        else:
-            return CART[user_id]
+    if user_id not in CART:
+        return {}
+    return CART[user_id]
 
 
 def add_product_user_cart(user_id, product_id):
@@ -67,20 +65,19 @@ def add_product_user_cart(user_id, product_id):
 
     if query_product is None:
         return {'error': 'No product found.'}
-    else:
-        if not query_product.is_available():
-            return {'error': 'Product inventory is empty.'}
-        if user_id not in CART:
-            CART[user_id] = {
-                'products': [],
-                'total': 0
-            }
+    if not query_product.is_available():
+        return {'error': 'Product inventory is empty.'}
+    if user_id not in CART:
+        CART[user_id] = {
+            'products': [],
+            'total': 0
+        }
 
-        CART[user_id]['products'].append({
-            'pid': query_product.id,
-            'title': query_product.title,
-            'price': query_product.price
-        })
+    CART[user_id]['products'].append({
+        'pid': query_product.id,
+        'title': query_product.title,
+        'price': query_product.price
+    })
     update_user_cart_price(user_id)
     return CART[user_id]
 
@@ -130,7 +127,7 @@ def checkout_cart(user_id):
         if query_product.is_available():
             query_product.inventory_count = query_product.inventory_count - 1
             db.session.commit() 
-            total_price = total_price + query_product.price
+            total_price += query_product.price
 
     # remove all the items in the user cart
     CART.pop(user_id, None)

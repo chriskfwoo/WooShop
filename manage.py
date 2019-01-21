@@ -39,7 +39,7 @@ def seed_db():
     ]
 
     for data in seed_data:
-        db.session.add(Product(title=data['title'], price=data['price'], inventory_count=data['inventory_count']))
+        db.session.add(Product(**data))
     db.session.commit()
 
 
