@@ -1,6 +1,7 @@
 # Super Cool Shop
 
 - Shopify Backend Challenge 2019 Internship 
+- GitHub repo: https://github.com/chriskfwoo/WooShop
 
 
 ## Getting started
@@ -160,6 +161,7 @@ Examples
     - Handles the communication between API request and DB Models
 
 ## Improvements
+- More tests!
 - Endpoints to add products, remove products
 - JWT authentication to handle user id
 - Environment and config files to handle development, staging, production
